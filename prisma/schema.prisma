@@ -8,12 +8,24 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  yodels    Yodel[]
+  id           Int       @id @default(autoincrement())
+  username     String    @unique
+  email        String    @unique
+  password     String
+  yodels       Yodel[]  
+  profileImage String?   
+  following    UserFollowing[] @relation("UserFollowing")
+  followers    UserFollowing[] @relation("UserFollowers")
+}
+
+model UserFollowing {
+  followerId Int
+  followingId Int
+
+  follower User @relation("UserFollowers", fields: [followerId], references: [id])
+  following User @relation("UserFollowing", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId]) // Composite primary key
 }
 
 model Yodel {
