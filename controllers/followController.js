@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 // Follow a user
 const followUser = async (req, res) => {
-  const { userId } = req.params; // User ID to follow
-  const followerId = req.user.id; // Current user ID (from the JWT)
+  const { userId } = req.params;
+  const followerId = req.user.id;
 
   try {
     // Check if the user to follow exists
@@ -27,15 +27,15 @@ const followUser = async (req, res) => {
 
     res.status(200).json({ message: `User ${userId} followed.` });
   } catch (error) {
-    console.error(error); // Log the error for debugging
+    console.error(error);
     res.status(500).json({ error: "Unable to follow user." });
   }
 };
 
 // Unfollow a user
 const unfollowUser = async (req, res) => {
-  const { userId } = req.params; // User ID to unfollow
-  const followerId = req.user.id; // Current user ID (from the JWT)
+  const { userId } = req.params;
+  const followerId = req.user.id;
 
   try {
     // Check if the user to unfollow exists
@@ -57,7 +57,7 @@ const unfollowUser = async (req, res) => {
 
     res.status(200).json({ message: `User ${userId} unfollowed.` });
   } catch (error) {
-    console.error(error); // Log the error for debugging
+    console.error(error);
     res.status(500).json({ error: "Unable to unfollow user." });
   }
 };

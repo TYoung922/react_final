@@ -11,7 +11,6 @@ const createYodel = async (req, res) => {
       data: {
         content,
         author: {
-          // Updated from yodeler to author
           connect: { id: req.user.id },
         },
       },
@@ -41,7 +40,7 @@ const getYodelById = async (req, res) => {
   try {
     const yodel = await prisma.yodel.findUnique({
       where: { id: parseInt(id) },
-      include: { author: true }, // Updated from yodler to author
+      include: { author: true },
     });
 
     if (!yodel) {
@@ -55,12 +54,12 @@ const getYodelById = async (req, res) => {
 
 // Get Yodels by User ID
 const getUsersYodels = async (req, res) => {
-  const { userId } = req.params; // Update variable name for clarity
+  const { userId } = req.params;
 
   try {
     const yodels = await prisma.yodel.findMany({
-      where: { authorId: parseInt(userId) }, // Updated from yodlerId to authorId
-      include: { author: true }, // Updated from yodeler to author
+      where: { authorId: parseInt(userId) },
+      include: { author: true },
     });
 
     res.json(yodels);
