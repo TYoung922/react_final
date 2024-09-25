@@ -18,12 +18,10 @@ const followUser = async (req, res) => {
     }
 
     // Create a relationship in the following table
-    await prisma.user.update({
-      where: { id: followerId },
+    await prisma.userFollowing.create({
       data: {
-        following: {
-          connect: { id: parseInt(userId) },
-        },
+        followerId: followerId,
+        followingId: parseInt(userId),
       },
     });
 
@@ -50,12 +48,10 @@ const unfollowUser = async (req, res) => {
     }
 
     // Remove the relationship in the following table
-    await prisma.user.update({
-      where: { id: followerId },
-      data: {
-        following: {
-          disconnect: { id: parseInt(userId) },
-        },
+    await prisma.userFollowing.deleteMany({
+      where: {
+        followerId: followerId,
+        followingId: parseInt(userId),
       },
     });
 

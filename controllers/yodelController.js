@@ -26,7 +26,7 @@ const createYodel = async (req, res) => {
 const getAllYodels = async (req, res) => {
   try {
     const yodels = await prisma.yodel.findMany({
-      include: { author: true }, // Updated from yodeler to author
+      include: { author: true },
     });
     res.json(yodels);
   } catch (error) {

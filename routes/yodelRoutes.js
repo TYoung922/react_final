@@ -14,6 +14,6 @@ router.post("/", authenticateJWT, createYodel);
 router.get("/", getAllYodels);
 router.get("/search", searchByContent); // Search Yodels by content
 router.get("/:id", getYodelById); // Get a single Yodel by ID
-router.get("/user/:userId", getUsersYodels); // Updated route to reflect changes
+router.get("/user/:userId", getUsersYodels); // get all of a single user's Yodels
 
 module.exports = router;
