@@ -49,4 +49,22 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const deleteUser = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const user = await prisma.user.delete({
+      where: { id: userId },
+    });
+    res.status(200).json({ message: "User deleted successfully", user });
+  } catch (error) {
+    console.error(error);
+    if (error.code === "P2025") {
+      res.status(400).json({ error: "User not found" });
+    } else {
+      res.status(500).json({ error: "Unable to delete user" });
+    }
+  }
+};
+
+module.exports = { register, login, deleteUser };

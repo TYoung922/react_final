@@ -62,4 +62,36 @@ const unfollowUser = async (req, res) => {
   }
 };
 
-module.exports = { followUser, unfollowUser };
+const getUserFollowing = async (req, res) => {
+  const followerId = req.user.id; // Get the follower ID from the request (assuming user is authenticated)
+
+  try {
+    // Fetch the UserFollowing data for the specified follower
+    const userFollowing = await prisma.userFollowing.findMany({
+      where: {
+        followerId: followerId, // Filter by the follower's ID
+      },
+      include: {
+        following: {
+          // Include the followed user's details
+          select: {
+            id: true,
+            username: true, // Adjust this according to your User model
+            // Add more fields as necessary
+          },
+        },
+      },
+    });
+
+    // Map the results to return only the followed user data
+    const followedUsers = userFollowing.map((follow) => follow.following);
+
+    // Respond with the followed user data
+    return res.status(200).json(followedUsers);
+  } catch (error) {
+    console.error("Error fetching user following:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = { followUser, unfollowUser, getUserFollowing };

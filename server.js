@@ -5,6 +5,8 @@ const authRoutes = require("./routes/authRoutes");
 const yodelRoutes = require("./routes/yodelRoutes");
 const followRoutes = require("./routes/followRoutes");
 const { authenticateJWT } = require("./middleware/authMiddleware");
+// const cors = require("cors");
+// app.use(cors({ origin: "http://localhost:3000" }));
 
 dotenv.config();
 
@@ -14,8 +16,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/yodels", authenticateJWT, yodelRoutes);
-app.use("/api/user", authenticateJWT, followRoutes);
+app.use("/api/yodels", yodelRoutes);
+app.use("/api/user", followRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 4000;
