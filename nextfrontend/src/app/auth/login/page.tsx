@@ -33,10 +33,12 @@ const Login = () => {
 
       // Assuming the API responds with a token and success message
       const { token } = response.data;
+      const { userId } = response.data;
       // const { userId } = response.data;
 
       // You could store the token in localStorage or cookies if needed
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
       // localStorage.setItem("userId", userId);
 
       // Redirect to the dashboard or homepage after successful login
@@ -54,7 +56,7 @@ const Login = () => {
       <div className="w-full max-w-xs">
         <form
           onSubmit={handleLogin}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="bg-slate-100 shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
           <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
 

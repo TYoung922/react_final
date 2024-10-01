@@ -10,7 +10,7 @@ const { authenticateJWT } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post("/", authenticateJWT, createYodel);
+router.post("/", createYodel);
 router.get("/", getAllYodels);
 router.get("/search", searchByContent);
 router.get("/:id", getYodelById);

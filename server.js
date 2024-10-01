@@ -16,8 +16,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/yodels", yodelRoutes);
-app.use("/api/user", followRoutes);
+app.use("/api/yodels", authenticateJWT, yodelRoutes);
+app.use("/api/user", authenticateJWT, followRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 4000;

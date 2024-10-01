@@ -76,25 +76,27 @@ const Navbar = () => {
 
   return (
     <nav className="bg-gray-800 p-4 flex justify-between items-center">
-      <div className="text-white text-xl font-bold">Yodel</div>
+      <div className="text-1xl md:text-6xl font-bold leading-normal py-2 bg-gradient-to-r from-yellow-400 to-green-300 bg-clip-text text-transparent">
+        Yodel
+      </div>
       <div className="flex space-x-4">
         {currentPath !== "/dashboard" && (
           <button
             onClick={handleExplore}
-            className="text-white bg-purple-500 hover:bg-purple-700 px-4 py-2 rounded"
+            className="text-white bg-yellow-500 hover:bg-yellow-700 px-4 py-2 rounded"
           >
             Explore Yodels
           </button>
         )}
         <button
           onClick={handleStartYodeling}
-          className="text-white bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded"
+          className="text-white bg-lime-500 hover:bg-lime-700 px-4 py-2 rounded"
         >
           Start Yodeling
         </button>
         <button
           onClick={handleSearch}
-          className="text-white bg-green-500 hover:bg-green-700 px-4 py-2 rounded"
+          className="text-white bg-emerald-500 hover:bg-emerald-700 px-4 py-2 rounded"
         >
           Search
         </button>
